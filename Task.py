@@ -1,6 +1,6 @@
 class Task:
     def __init__(self, p, r, d, w):
-        self.p = p
+        self.p = p  # TODO: rozwiń nazwy
         self.r = r
         self.d = d
         self.w = w

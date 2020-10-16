@@ -19,6 +19,6 @@ class Generator:
 
     def serialize(self, file_name):
         with open(file_name, 'w') as file:
+            file.write(str(len(self.tasks)) + '\n')
             for task in self.tasks:
-                file.write(str(self.tasks.index(task) + 1) + "\n")
-                file.write(str(task) + "\n")
+                file.write(str(task) + '\n')
