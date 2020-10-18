@@ -13,7 +13,7 @@ class Validator:
             self.execution = self.validate_algorithm
 
     def validate_result(self):
-        pass  # TODO: zaimplementuj
+        pass
 
     def validate_algorithm(self):
         pass  # TODO: zaimplementuj
