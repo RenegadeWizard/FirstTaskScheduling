@@ -32,9 +32,9 @@ class Validator:
         time = 0
         for task in result.tasks:
             curr_task = tasks[task - 1]
-            time += curr_task.r + curr_task.p
-            if time > curr_task.d:
-                weight_sum += curr_task.w
+            time += curr_task.earliest_start_time + curr_task.processing_time
+            if time > curr_task.time_limit:
+                weight_sum += curr_task.weight
         if weight_sum == result.u:
             print("Correct")
         else:
