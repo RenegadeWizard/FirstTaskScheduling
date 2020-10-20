@@ -1,5 +1,4 @@
-from Generator import Generator
-from Validator import Validator
+from service.Validator import Validator
 
 OUT_FILE_NAME = "out/out.txt"
 IN_FILE_NAME = "out/in.txt"
