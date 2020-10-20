@@ -1,5 +1,5 @@
 import random
-from Task import Task
+from model.Task import Task
 
 MAX_DURATION = 30
 MAX_START = 30
