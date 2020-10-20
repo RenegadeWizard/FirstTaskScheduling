@@ -1,5 +1,5 @@
 class Task:
-    def __init__(self, p, r, d, w):
+    def __init__(self, p: int, r: int, d: int, w: int):
         self.p = p  # TODO: rozwiń nazwy
         self.r = r
         self.d = d

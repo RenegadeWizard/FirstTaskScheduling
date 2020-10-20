@@ -28,7 +28,7 @@ class Validator:
             input_file_tab = file.read().split('\n')
         tasks = []
         for i in range(int(input_file_tab[0])):
-            tasks.append(Task.of(input_file_tab[i + 1].split(' ')))
+            tasks.append(Task.of([int(i) for i in input_file_tab[i + 1].split(' ')]))
         return tasks
 
     def __parse_output(self) -> Result:
