@@ -6,7 +6,7 @@ IN_FILE_NAME = "out/in.txt"
 
 def main():
     # Generator(5).serialize(FILE_NAME)
-    Validator(OUT_FILE_NAME, IN_FILE_NAME)
+    Validator(OUT_FILE_NAME, IN_FILE_NAME).execution()
 
 
 if __name__ == '__main__':
