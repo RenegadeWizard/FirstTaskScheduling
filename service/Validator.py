@@ -30,15 +30,19 @@ class Validator:
     def __validate(self, result, tasks):
         weight_sum = 0
         time = 0
+        if len(tasks) != len(result.tasks):
+            print("Incorrect number of tasks!")
+            return
         for task in result.tasks:
             curr_task = tasks[task - 1]
-            time += curr_task.earliest_start_time + curr_task.processing_time
-            if time > curr_task.time_limit:
+            time = max(time + 1, curr_task.ready_time) + curr_task.processing_time
+            if time > curr_task.due_time:
                 weight_sum += curr_task.weight
-        if weight_sum == result.u:
-            print("Correct")
-        else:
-            print("Incorrect")
+        # if weight_sum == result.u:    # PROD
+        #     print("Correct")
+        # else:
+        #     print("Incorrect")
+        print(weight_sum)
 
     def __check_output_file(self, file_name: str):
         if file_name.rfind('.txt') > 0:
@@ -59,4 +63,4 @@ class Validator:
     def __parse_output(output_file_name) -> Result:
         with open(output_file_name, 'r') as file:
             output_file = file.read().split('\n')
-        return Result(int(output_file[0]), [int(i) for i in output_file[1].split(' ')])
+        return Result(int(output_file[0]), [int(i) for i in output_file[1].split(' ') if i != ''])
