@@ -18,14 +18,14 @@ class Validator:
         self.__validate(result, tasks)
 
     def validate_algorithm(self):
+        command = [self.output, self.input]
         time_start = datetime.now()
-        process = subprocess.run(self.output)
+        process = subprocess.run(command)
         time_end = datetime.now()
-        # tasks = self.__parse_input(self.input)    # TODO
-        # result = self.__parse_output(self.output)
-        # self.__validate(result, tasks)
-        print(process.stdout)
-        print(f"time: {(time_end - time_start).microseconds / 1000} ms")
+        tasks = self.__parse_input(self.input)
+        result = self.__parse_output("out/out.txt")  # TODO
+        self.__validate(result, tasks)
+        print(f" {(time_end - time_start).microseconds / 1000} ms")
 
     def __validate(self, result, tasks):
         weight_sum = 0
@@ -35,14 +35,13 @@ class Validator:
             return
         for task in result.tasks:
             curr_task = tasks[task - 1]
-            time = max(time + 1, curr_task.ready_time) + curr_task.processing_time
+            time = max(time, curr_task.ready_time) + curr_task.processing_time
             if time > curr_task.due_time:
                 weight_sum += curr_task.weight
-        # if weight_sum == result.u:    # PROD
-        #     print("Correct")
-        # else:
-        #     print("Incorrect")
-        print(weight_sum)
+        if weight_sum == result.u:
+            print(f"Correct {weight_sum}")
+        else:
+            print(f"Incorrect {weight_sum}")
 
     def __check_output_file(self, file_name: str):
         if file_name.rfind('.txt') > 0:
@@ -56,7 +55,7 @@ class Validator:
             input_file_tab = file.read().split('\n')
         tasks = []
         for i in range(int(input_file_tab[0])):
-            tasks.append(Task.of([int(i) for i in input_file_tab[i + 1].split(' ')]))
+            tasks.append(Task.of([int(i) for i in input_file_tab[i + 1].split(' ') if i != '']))
         return tasks
 
     @staticmethod
